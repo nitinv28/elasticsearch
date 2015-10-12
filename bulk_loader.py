@@ -17,7 +17,7 @@ Parameters:
 3. JSON data file (input)
 4. Elasticsearch format JSON file (output)
 """
-def covert_to_es_json(es_index, es_type, in_file, out_file):
+def convert_to_es_json(es_index, es_type, in_file, out_file):
       with open(in_file, 'r') as i_fp:
             data = json.load(i_fp)
 
@@ -62,10 +62,10 @@ def bulk_post_to_es(es_index, es_type, in_file):
 if __name__ == '__main__':
       print '*** Converting json data to Elasticsearch \'bulk\' json format. ***'
 
-      retVal = covert_to_es_json('streamflix_movies', 'title', 'c:\es_code\data\streamflix_movies.json', 'c:\es_code\data\streamflix_movies_es.json')
+      retVal = convert_to_es_json('streamflix_movies', 'title', 'c:\es_code\data\streamflix_movies.json', 'c:\es_code\data\streamflix_movies_es.json')
       print retVal, ' items converted...'
       
-      retVal = covert_to_es_json('profs', 'name', 'c:\es_code\data\profs.json', 'c:\es_code\data\profs_es.json')
+      retVal = convert_to_es_json('profs', 'name', 'c:\es_code\data\profs.json', 'c:\es_code\data\profs_es.json')
       print retVal, ' items converted...'
 
       print '*** Bulk posting the data to Elasticsearch. ***'
