@@ -25,8 +25,8 @@ def convert_to_es_json(es_index, es_type, in_file, out_file):
       with open(out_file, 'w') as o_fp:
             for record in data:
                   index_id += 1
-                  o_fp.write('{ "index":' + ' { "_index" : "'+  es_index + '", "_type" : "' \
-                             +  es_type + '", "_id" : "' +  str(index_id) + '"} }\n')
+                  o_fp.write('{ "index":' + ' { "_index" : "'+  es_index + '", "_type" : "' +  es_type + '", "_id" : '\
+                             + '%d' % index_id + '} }\n')
                   json.dump(record, o_fp)
                   o_fp.write('\n')
 
@@ -51,7 +51,7 @@ def bulk_post_to_es(es_index, es_type, in_file):
                   bulk_data.append({"_op_type": "index", \
                                     "_index" : es_index, \
                                     "_type" : es_type, \
-                                    "_id" : str(index_id), \
+                                    "_id" : index_id+1, \
                                     "doc" : json_data[index_id]})
                                     
                   index_id += 1
